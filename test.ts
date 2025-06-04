@@ -1,8 +1,11 @@
-import { ShuffledUintArray } from "./shuffle.ts";
-import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort } from "./sort/mod.ts";
+import { RandomUintArray, ShuffledUintArray } from "./shuffle.ts";
+import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort, check } from "./sort/mod.ts";
 
 let b=Date.now();
-const usarr=new ShuffledUintArray(20_000);
+//const usarr=new ShuffledUintArray(50_000); // base case
+//const usarr=[...Array(20_000)].map((v,i)=>i); // best case
+//const usarr=[...Array(20_000)].map((v,i)=>i).reverse(); // worst case
+const usarr=new RandomUintArray(20_000); // random case
 let d=Date.now()-b;
 
 console.log("unsorted array",usarr);
@@ -17,7 +20,7 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("bogo sorted array",sarr);
-    console.log(`number of operations ${bogoSort.operations}\nbogo sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations ${bogoSort.operations}\nbogo sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };
 {
     // stalin sort
@@ -26,7 +29,7 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("stalin sorted array",sarr);
-    console.log(`number of operations ${stalinSort.operations}\nstalin sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations ${stalinSort.operations}\nstalin sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };
 {
     // builtin sort
@@ -35,7 +38,7 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("builtin sorted array",sarr);
-    console.log(`number of operations unkown\nbuiltin sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations unkown\nbuiltin sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };
 {
     // bubble sort
@@ -44,7 +47,7 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("bubble sorted array",sarr);
-    console.log(`number of operations ${bubbleSort.operations}\nbubble sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations ${bubbleSort.operations}\nbubble sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };
 {
     // quick sort
@@ -53,7 +56,7 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("quick sorted array",sarr);
-    console.log(`number of operations ${quickSort.operations}\nquick sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations ${quickSort.operations}\nquick sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };
 {
     // merge sort
@@ -62,5 +65,5 @@ console.log("\n\n");
     d=Date.now()-b;
 
     console.log("merge sorted array",sarr);
-    console.log(`number of operations ${mergeSort.operations}\nmerge sort finished after ${d/1000} seconds\n`);
+    console.log(`number of operations ${mergeSort.operations}\nmerge sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 };

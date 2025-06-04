@@ -1,9 +1,7 @@
 export function number(arr: number[]):boolean{
-    if(arr.length<2)return true;
-    let last=arr[0];
+    if(arr.length<=1)return true;
     for(let i=1;i<arr.length;i++){
-        if(last>arr[i])return false;
-        last=arr[i]
-    };
+        if(arr[i-1]>arr[i])return false;
+    }
     return true;
 }

@@ -1,0 +1,1 @@
+deno run --v8-flags="--stack-size=65500" test.ts
