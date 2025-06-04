@@ -1,4 +1,5 @@
 import { shuffle } from "../shuffle.ts";
+import * as check from "./check.ts";
 
 export const bogoSort=new class BogoSort{
     operations=0;
@@ -6,15 +7,11 @@ export const bogoSort=new class BogoSort{
     number(arr: number[]):number[]{
         this.operations=0;
         let sorted:number[]=[],last:number;
-        loop:while(true){
+        while(true){
             sorted=shuffle(arr);
             this.operations++;
             last=sorted[0];
-            for(let i=1;i<sorted.length;i++){
-                if(last>sorted[i])continue loop;
-                last=sorted[i]
-            };
-            break;
+            if(check.number(sorted))break;
         }
         return sorted;
     }
