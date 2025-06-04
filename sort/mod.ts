@@ -4,5 +4,6 @@ export { radixSort } from "./radix.ts";
 export { heapSort } from "./heap.ts";
 export { bogoSort } from "./bogo.ts";
 export { bubbleSort } from "./bubble.ts";
+export { stalinSort } from "./stalin.ts";
 export * as check from "./check.ts";
 

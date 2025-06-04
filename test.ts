@@ -1,24 +1,33 @@
 import { ShuffledUintArray } from "./shuffle.ts";
-import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort } from "./sort/mod.ts";
+import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort } from "./sort/mod.ts";
 
 let b=Date.now();
-const usarr=new ShuffledUintArray(20);
+const usarr=new ShuffledUintArray(20_000);
 let d=Date.now()-b;
 
 console.log("unsorted array",usarr);
 console.log(`unsorted array created after ${d/1000} seconds`);
 console.log("\n\n");
 
-// {
-//     // bogo sort
-//     console.log("only using a slice for bogosort")
-//     b=Date.now();
-//     const sarr=bogoSort.number(usarr.slice(0,10));
-//     d=Date.now()-b;
+{
+    // bogo sort
+    console.log("only using a slice for bogosort")
+    b=Date.now();
+    const sarr=bogoSort.number(usarr.slice(0,10));
+    d=Date.now()-b;
 
-//     console.log("bogo sorted array",sarr);
-//     console.log(`number of operations ${bogoSort.operations}\nbogo sort finished after ${d/1000} seconds\n`);
-// };
+    console.log("bogo sorted array",sarr);
+    console.log(`number of operations ${bogoSort.operations}\nbogo sort finished after ${d/1000} seconds\n`);
+};
+{
+    // stalin sort
+    b=Date.now();
+    const sarr=stalinSort.number(usarr);
+    d=Date.now()-b;
+
+    console.log("stalin sorted array",sarr);
+    console.log(`number of operations ${stalinSort.operations}\nstalin sort finished after ${d/1000} seconds\n`);
+};
 {
     // builtin sort
     b=Date.now();
