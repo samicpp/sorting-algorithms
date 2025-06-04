@@ -18,7 +18,7 @@ export class ShuffledUintArray extends Array{
 export class ShuffledIntArray extends Array{
     constructor(length){
         const barr=[...Array(length)];
-        for(let i in barr)barr[i]=length/2-parseInt(i,10);
+        for(let i in barr)barr[i]=Math.floor(length/2)-parseInt(i,10);
         super();
         while(barr.length>0){
             let i=Math.floor(Math.random()*barr.length);
@@ -45,6 +45,32 @@ export class ShuffledStringArray extends Array{
         }
         // console.log(barr,uarr);
         // console.log(uarr.sort())
+    }
+};
+
+export class RandomUintArray extends Array{
+    constructor(length,max=length,min=0){
+        super(length);
+        for(let i=0;i<length;i++){
+            this[i]=Math.floor(Math.random()*(max-min)+min);
+        };
+    }
+};
+export class RandomFloatArray extends Array{
+    constructor(length,max=length,min=0){
+        super(length);
+        for(let i=0;i<length;i++){
+            this[i]=Math.random()*(max-min)+min;
+        };
+    }
+};
+export class RandomStringArray extends Array{
+    constructor(length,chars=100){
+        super();
+        for(let i=0;i<length;i++){
+            this[i]="";
+            for(let j=0;j<chars;j++)this[i]+=String.fromCharCode(Math.floor(Math.random()*255));
+        }
     }
 };
 
