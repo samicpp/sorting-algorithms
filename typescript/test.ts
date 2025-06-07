@@ -1,8 +1,9 @@
 import { RandomUintArray, ShuffledUintArray } from "./shuffle.ts";
 import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort, check } from "./sort/mod.ts";
 
+const startms=Date.now();
 let b=Date.now();
-const usarr=new ShuffledUintArray(50_000); // base case
+const usarr=new ShuffledUintArray(100_000); // base case
 //const usarr=[...Array(20_000)].map((v,i)=>i); // best case
 //const usarr=[...Array(20_000)].map((v,i)=>i).reverse(); // worst case
 //const usarr=new RandomUintArray(20_000); // random case
@@ -85,3 +86,9 @@ console.log("\n\n");
     console.log("heap sorted array",sarr);
     console.log(`number of operations ${heapSort.operations}\nheap sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 }
+
+
+
+const enddelay=Date.now()-startms;
+
+console.log(`\n\nprogram finished after ${enddelay/1000}s\n`);

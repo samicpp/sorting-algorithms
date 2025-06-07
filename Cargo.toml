@@ -1,2 +1,3 @@
 [workspace]
 members = ["rust_sort"]
+resolver = "1"

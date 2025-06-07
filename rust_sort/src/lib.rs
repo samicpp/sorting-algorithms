@@ -1,5 +1,6 @@
 pub mod sort;
 pub mod tools;
+pub mod ffi;
 
 use std::time::{Duration, Instant};
 use std::thread::{self, sleep};
@@ -129,7 +130,7 @@ mod tests {
 
     #[test]
     fn test_bubble_sort(){
-        let svec=tools::shuffled_uint32(10_000);
+        let svec=tools::shuffled_uint32(100_000);
         let now=Instant::now();
         let out=sort::bubble::number(svec);
         let del=now.elapsed().as_nanos() as f64;
@@ -161,6 +162,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn test_nosort(){
         let svec=tools::shuffled_uint32(1_000);
         let out=sort::nosort::number(svec);

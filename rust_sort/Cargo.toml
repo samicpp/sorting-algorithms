@@ -7,6 +7,6 @@ edition = "2021"
 rand = "*"
 num-traits = "*"
 
-# [lib]
-# crate-type = ["cdylib"]
+[lib]
+crate-type = ["cdylib"]
 # test comment

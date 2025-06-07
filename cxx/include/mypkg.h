@@ -1,14 +1,19 @@
 #pragma once
 
-#include <vector>
-#include <string>
+#include<stddef.h>
 
-
-#ifdef _WIN32
-  #define PKG_EXPORT __declspec(dllexport)
-#else
-  #define PKG_EXPORT
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-PKG_EXPORT void pkg();
-PKG_EXPORT void pkg_print_vector(const std::vector<std::string> &strings);
+void quick_sort(int* ptr, size_t len);
+void radix_sort(int* ptr, size_t len);
+void heap_sort(int* ptr, size_t len);
+void merge_sort(int* ptr, size_t len);
+void bubble_sort(int* ptr, size_t len);
+void bogo_sort(int* ptr, size_t len);
+void stalin_sort(int* ptr, size_t len);
+
+#ifdef __cplusplus
+}
+#endif
