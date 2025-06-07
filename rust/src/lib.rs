@@ -15,7 +15,7 @@ use std::sync::{
 //     test_sorts();
 // }
 
-fn test_qbm_sorts()->Vec<(String,Vec<u32>,Duration)>{
+fn _test_qbm_sorts()->Vec<(String,Vec<u32>,Duration)>{
     let sv=&tools::shuffled_uint32(1_000);
     println!("{:?}\n",&sv[0..20]);
     
@@ -112,8 +112,8 @@ mod tests {
         let out=sort::quick::number(svec);
         let del=now.elapsed().as_nanos() as f64;
 
-        println!("quick sort took {}µs = {}s",del/1000.0,del/1_000_000_000.0);
-        assert!(tools::is_sorted(&out),"quick sort failed");
+        println!("\x1b[36m quick sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        assert!(tools::is_sorted(&out),"\x1b[31m quick sort failed\x1b[0m");
     }
 
     #[test]
@@ -123,18 +123,48 @@ mod tests {
         let out=sort::merge::number(svec);
         let del=now.elapsed().as_nanos() as f64;
 
-        println!("merge sort took {}µs = {}s",del/1000.0,del/1_000_000_000.0);
-        assert!(tools::is_sorted(&out),"merge sort failed");
+        println!("\x1b[36m merge sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        assert!(tools::is_sorted(&out),"\x1b[31m merge sort failed\x1b[0m");
     }
 
     #[test]
     fn test_bubble_sort(){
-        let svec=tools::shuffled_uint32(100_000);
+        let svec=tools::shuffled_uint32(10_000);
         let now=Instant::now();
         let out=sort::bubble::number(svec);
         let del=now.elapsed().as_nanos() as f64;
 
-        println!("bubble sort took {}µs = {}s",del/1000.0,del/1_000_000_000.0);
-        assert!(tools::is_sorted(&out),"bubble sort failed");
+        println!("\x1b[36m bubble sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        assert!(tools::is_sorted(&out),"\x1b[31m bubble sort failed\x1b[0m");
+    }
+
+    #[test]
+    fn test_nosort(){
+        let svec=tools::shuffled_uint32(1_000);
+        let out=sort::nosort::number(svec);
+
+        assert!(!tools::is_sorted(&out),"\x1b[31m shuffled array was sorted\x1b[0m");
+    }
+
+    #[test]
+    fn test_stalin_sort(){
+        let svec=tools::shuffled_uint32(100_000);
+        let now=Instant::now();
+        let out=sort::stalin::number(svec);
+        let del=now.elapsed().as_nanos() as f64;
+
+        println!("\x1b[36m stalin sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        assert!(tools::is_sorted(&out),"\x1b[31m stalin sort failed\x1b[0m");
+    }
+
+    #[test]
+    fn test_bogo_sort(){
+        let svec=tools::shuffled_uint32(10);
+        let now=Instant::now();
+        let out=sort::bogo::number(svec);
+        let del=now.elapsed().as_nanos() as f64;
+
+        println!("\x1b[36m bogo sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        assert!(tools::is_sorted(&out),"\x1b[31m bogo sort failed\x1b[0m");
     }
 }

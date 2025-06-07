@@ -9,6 +9,6 @@ pub fn shuffled_uint32(length: u32)->Vec<u32>{
     v
 }
 
-pub fn is_sorted(arr: &[u32])->bool{
+pub fn is_sorted<T>(arr: &[T])->bool where T: PartialEq + PartialOrd{
     arr.windows(2).all(|w|w[0]<=w[1])
 }
