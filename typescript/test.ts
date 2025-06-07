@@ -76,3 +76,12 @@ console.log("\n\n");
     console.log("radix sorted array",sarr);
     console.log(`number of operations ${radixSort.operations}\nradix sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
 }
+{
+    // heap sort
+    b=Date.now();
+    const sarr=heapSort.number(usarr);
+    d=Date.now()-b;
+
+    console.log("heap sorted array",sarr);
+    console.log(`number of operations ${heapSort.operations}\nheap sort finished after ${d/1000} seconds\npasses check ${check.number(sarr)}\n`);
+}

@@ -2,6 +2,7 @@ pub mod quick;
 pub mod bubble;
 pub mod merge;
 pub mod radix;
+pub mod heap;
 
 pub mod nosort;
 
