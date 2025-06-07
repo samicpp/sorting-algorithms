@@ -3,8 +3,9 @@ school pws
 
 ## language timeline
 1. JavaScript (Deno): initial setup
-2. Rust: modularity and performance
+2. Rust: modularity & performance
 3. C/C++: comatibility with other projects
+4. Python: compatibility
 
 
 ## algorithms timeline

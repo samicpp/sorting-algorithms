@@ -1,7 +1,3 @@
-pub fn accesibility_test(){
-    println!("successfully called");
-}
-
 pub fn number<T>(arr: Vec<T>)->Vec<T>
 where T: PartialEq + PartialOrd + Copy,
 {

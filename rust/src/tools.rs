@@ -8,3 +8,7 @@ pub fn shuffled_uint32(length: u32)->Vec<u32>{
     v.shuffle(&mut rng);
     v
 }
+
+pub fn is_sorted(arr: &[u32])->bool{
+    arr.windows(2).all(|w|w[0]<=w[1])
+}

@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 rand = "*"
+
+# [lib]
+# crate-type = ["cdylib"]
+# test comment
