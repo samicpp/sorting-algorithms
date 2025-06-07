@@ -1,4 +1,4 @@
-import * as check from "./check.ts";
+//import * as check from "./check.ts";
 
 export const heapSort=new class HeapSort{
     number(arr: number[]):number[]{

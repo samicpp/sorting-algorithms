@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "test": "deno run --v8-flags=\"--stack-size=65500\" ./typescript/test.ts"
+    "test": "deno run --v8-flags=\"--stack-size=65500\" ./typescript/test.ts",
+    "test_call_stack": "deno run --v8-flags=\"--stack-size=65500\" ./typescript/max.ts"
   }
 }

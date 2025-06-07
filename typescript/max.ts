@@ -5,5 +5,7 @@ function recurse(_c?:number) {
 
 try{
   recurse(); // check maximum call stack
-}catch(err){}
-console.log(count);
+}catch(_err){
+  // nothing here
+};
+console.log(`max call stack = ${count}`);

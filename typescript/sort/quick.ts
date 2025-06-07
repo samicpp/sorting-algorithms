@@ -1,4 +1,4 @@
-import * as check from "./check.ts";
+//import * as check from "./check.ts";
 
 export const quickSort=new class QuickSort{
     operations=0;
@@ -10,9 +10,9 @@ export const quickSort=new class QuickSort{
         smaller:number[]=[],
         bigger:number[]=[],
         middle:number[]=[];
-        let pivot=narr[narr.length-1];
+        const pivot=narr[narr.length-1];
         
-        for(let i of narr){
+        for(const i of narr){
             if(i==pivot)middle.push(i);
             if(i<pivot)smaller.push(i);
             if(i>pivot)bigger.push(i);

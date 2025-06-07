@@ -1,4 +1,4 @@
-import * as check from "./check.ts";
+//import * as check from "./check.ts";
 
 export const bubbleSort=new class BubbleSort{
     operations=0;
@@ -12,7 +12,7 @@ export const bubbleSort=new class BubbleSort{
                 //console.log(narr[j]>narr[j+1],narr[j],narr[j+1])
                 if(narr[j]>narr[j+1]){
                     //console.log("if statement triggered");
-                    let t=narr[j];
+                    const t=narr[j];
                     narr[j]=narr[j+1];
                     narr[j+1]=t;
                     this.operations++;

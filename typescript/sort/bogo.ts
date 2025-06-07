@@ -6,11 +6,10 @@ export const bogoSort=new class BogoSort{
 
     number(arr: number[]):number[]{
         this.operations=0;
-        let sorted:number[]=[],last:number;
+        let sorted:number[]=[];
         while(true){
             sorted=shuffle(arr);
             this.operations++;
-            last=sorted[0];
             if(check.number(sorted))break;
         }
         return sorted;
