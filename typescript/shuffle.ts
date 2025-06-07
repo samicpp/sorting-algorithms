@@ -1,13 +1,13 @@
-import { ByteLib } from "./buffer.ts";
-const blib=new ByteLib;
+//import { ByteLib } from "./buffer.ts";
+//const blib=new ByteLib;
 
 export class ShuffledUintArray extends Array{
-    constructor(length){
+    constructor(length=10){
         const barr=[...Array(length)];
-        for(let i in barr)barr[i]=parseInt(i,10);
+        for(const i in barr)barr[i]=parseInt(i,10);
         super();
         while(barr.length>0){
-            let i=Math.floor(Math.random()*barr.length);
+            const i=Math.floor(Math.random()*barr.length);
             this.push(barr[i]);
             barr.splice(i,1);
         }
@@ -16,12 +16,12 @@ export class ShuffledUintArray extends Array{
     }
 };
 export class ShuffledIntArray extends Array{
-    constructor(length){
+    constructor(length=10){
         const barr=[...Array(length)];
-        for(let i in barr)barr[i]=Math.floor(length/2)-parseInt(i,10);
+        for(const i in barr)barr[i]=Math.floor(length/2)-parseInt(i,10);
         super();
         while(barr.length>0){
-            let i=Math.floor(Math.random()*barr.length);
+            const i=Math.floor(Math.random()*barr.length);
             this.push(barr[i]);
             barr.splice(i,1);
         }
@@ -30,16 +30,38 @@ export class ShuffledIntArray extends Array{
     }
 };
 export class ShuffledStringArray extends Array{
-    constructor(length){
+    #bytes(num: number | bigint): number {
+        let m = 0, s = 0n, x = 0n;
+        if (typeof num == "bigint") x = num;
+        else x = BigInt(parseInt(String(num)) || 0);
+        //if (x >= 0xff_ff_ff_ff) throw Error("number too big");
+        if (x < 0) throw Error("number cant be negative");
+        //if(0x1_00_00_00n&x)return 4;
+        while (true) {
+            if ((x >> s) <= 0) break; m++; s += 8n;
+        }
+        return m;
+    };
+    #decInt(x: bigint, a: number): bigint[] {
+        const buff: bigint[] = [];
+        let s = 0n;
+        for (let i = BigInt(a - 1); 0 <= i; i--) {
+            s = i * 8n
+            buff.push((0xffn * 0x100n ** i & x) >> s);
+        };
+        return buff;
+    };
+    constructor(length=10){
+        super();
         const barr=[...Array(length)];
         //const buff=new Uint8Array(blib.bytes(length));
-        for(let i in barr){
+        for(const i in barr){
             //barr[i]=length/2-parseInt(i,10);
-            barr[i]=String.fromCharCode(...blib.decInt(parseInt(i)));
+            const buff=this.#decInt(BigInt(i),this.#bytes(BigInt(i))).map(e=>Number(e));
+            barr[i]=String.fromCharCode(...buff);
         };
-        super();
         while(barr.length>0){
-            let i=Math.floor(Math.random()*barr.length);
+            const i=Math.floor(Math.random()*barr.length);
             this.push(barr[i]);
             barr.splice(i,1);
         }
@@ -49,7 +71,7 @@ export class ShuffledStringArray extends Array{
 };
 
 export class RandomUintArray extends Array{
-    constructor(length,max=length,min=0){
+    constructor(length=10,max=length,min=0){
         super(length);
         for(let i=0;i<length;i++){
             this[i]=Math.floor(Math.random()*(max-min)+min);
@@ -57,7 +79,7 @@ export class RandomUintArray extends Array{
     }
 };
 export class RandomFloatArray extends Array{
-    constructor(length,max=length,min=0){
+    constructor(length=10,max=length,min=0){
         super(length);
         for(let i=0;i<length;i++){
             this[i]=Math.random()*(max-min)+min;
@@ -65,7 +87,7 @@ export class RandomFloatArray extends Array{
     }
 };
 export class RandomStringArray extends Array{
-    constructor(length,chars=100){
+    constructor(length=10,chars=100){
         super();
         for(let i=0;i<length;i++){
             this[i]="";
@@ -79,7 +101,7 @@ export function shuffle<T>(arr: T[]): T[]{
     //for(let i in barr)barr[i]=parseInt(i,10);
     const sarr: T[]=[];
     while(barr.length>0){
-        let i=Math.floor(Math.random()*barr.length);
+        const i=Math.floor(Math.random()*barr.length);
         sarr.push(barr[i]);
         barr.splice(i,1);
     };

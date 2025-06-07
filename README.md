@@ -1,18 +1,21 @@
 # sorting-algorithms
-school pws
+sorting algorithms in multiple languages
+
 
 ## language timeline
-1. JavaScript (Deno): initial setup
-2. Rust: modularity & performance
-3. C/C++: comatibility with other projects
-4. Python: compatibility
+1. [x] JavaScript (Deno): initial setup
+2. [x] Rust: modularity & performance
+3. [x] C/C++: comatibility with other projects
+4. [ ] Python: compatibility
 
 
 ## algorithms timeline
-1. bogo sort
-2. bubble sort
-3. quick sort
-4. merge sort
-5. heap sort
-6. radix sort
-
+1. [x] bogo sort
+2. [x] bubble sort
+3. [x] quick sort
+4. [x] merge sort
+5. [x] stalin sort
+6. [x] heap sort
+7. [x] radix sort
+8. [x] heap sort
+9. [ ] insertion sort

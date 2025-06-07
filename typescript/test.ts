@@ -1,5 +1,8 @@
-import { RandomUintArray, ShuffledUintArray } from "./shuffle.ts";
-import { bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort, check } from "./sort/mod.ts";
+import { 
+    RandomUintArray, ShuffledUintArray, 
+    bogoSort, bubbleSort, heapSort, mergeSort, quickSort, radixSort, stalinSort, check 
+} from "./mod.ts";
+
 
 const startms=Date.now();
 let b=Date.now();
