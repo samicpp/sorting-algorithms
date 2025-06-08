@@ -56,7 +56,8 @@ pub extern "C" fn stalin_sort(ptr: *mut i32, len: usize){
         assert!(!ptr.is_null(),"pointer is null");
         std::slice::from_raw_parts_mut(ptr, len)
     };
-    let sorted=sort::stalin::number(slice.to_vec());
+    let mut sorted=sort::stalin::number(slice.to_vec());
+    sorted.resize(slice.len(),0);
     slice.copy_from_slice(&sorted);
 }
 
