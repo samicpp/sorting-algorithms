@@ -32,29 +32,40 @@ int main(int argc, char* argv[]){
     std::ifstream infile(input);
     std::ofstream outfile(output);
 
-    std::ostringstream buff;
-    buff<<infile.rdbuf();
-    std::string jstr=buff.str()/*R"({
-        "type":"int",
-        "list": [5,4,1,2,3,4,2,4,5,678,123]
-    })"*/;
+    if(!infile){
+        std::cerr<<"couldnt open input file\n";
+        return 0;
+    }if(!outfile){
+        std::cerr<<"couldnt open output file\n";
+        return 0;
+    };
 
-    json j=json::parse(jstr);
+    json j;
+    try{
+        infile>>j;
+    }catch(const json::parse_error e){
+        std::cerr<<"couldnt parse json\n"<<e.what()<<std::endl;
+        return 0;
+    }
 
-    if(j.contains("type")&&j["type"]=="int"){
+    if(!j.contains("type")&&!j.contains("list")){
+        std::cerr<<"data didnt contain a list or a type\n";
+        return 0;
+    }
+
+    if(j["type"]=="int"){
         std::vector<int> vec=j["list"].get<std::vector<int>>();
-        int* arr=vec.data();
-        size_t len=vec.size();
 
-        quick_sort(arr,len);
+        quick_sort(vec.data(),vec.size());
+
+        json outj={
+            {"type","int"},
+            {"arr",vec},
+        };
 
         //write to file 
-        outfile<<"{\n\t\"type\": \"int\",\n\t\"arr\": [";
-        for(int i=0;i<len;i++){
-            if(i!=0)outfile<<",";
-            outfile<<"\n\t\t"<<arr[i];
-        };
-        outfile<<"\n\t]\n}\n";
+        outfile<<outj.dump(4)<<std::endl;
+        return 0;
     }
 }
 
