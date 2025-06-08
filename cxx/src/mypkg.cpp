@@ -10,8 +10,10 @@ using json = nlohmann::json;
 
 int main(int argc, char* argv[]){
 
+    std::string method="quick";
     std::string input="/dev/stdin";
     std::string output="/dev/stdout";
+
     if(argc==1){
         std::cerr<<argv[0]<<" requires atleast 1 argument\n";
         return 0;
@@ -27,7 +29,11 @@ int main(int argc, char* argv[]){
     }else if(argc>2){
         input=argv[1];
         output=argv[2];
+    }if(argc>3){
+        method=argv[3];
     };
+
+    //std::cout<<"input,output,sorting method: "<<input<<", "<<output<<", "<<method<<std::endl;
 
     std::ifstream infile(input);
     std::ofstream outfile(output);
@@ -56,7 +62,14 @@ int main(int argc, char* argv[]){
     if(j["type"]=="int"){
         std::vector<int> vec=j["list"].get<std::vector<int>>();
 
-        quick_sort(vec.data(),vec.size());
+        if(method=="quick")quick_sort(vec.data(),vec.size());
+        else if(method=="merge")merge_sort(vec.data(),vec.size());
+        else if(method=="bubble")bubble_sort(vec.data(),vec.size());
+        else if(method=="radix")radix_sort(vec.data(),vec.size());
+        else if(method=="heap")heap_sort(vec.data(),vec.size());
+        else if(method=="stalin")stalin_sort(vec.data(),vec.size());
+        else if(method=="bogo")bogo_sort(vec.data(),vec.size());
+        else quick_sort(vec.data(),vec.size());
 
         json outj={
             {"type","int"},
