@@ -9,6 +9,14 @@ set(RUST_LIB_DIR "${RUST_PROJECT_DIR}/target/release")
 set(RUST_LIB_NAME sorting_algorithm) # From your Cargo.toml
 set(RUST_LIB_PATH "${RUST_LIB_DIR}/lib${RUST_LIB_NAME}.so")
 
+# json
+#include(FetchContent)
+#FetchContent_Declare(
+#  json
+#  URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+#)
+#FetchContent_MakeAvailable(json)
+
 # command
 add_custom_command(
     OUTPUT ${RUST_LIB_PATH}
@@ -27,6 +35,7 @@ add_dependencies(mypkg rustlib)
 # link
 target_link_directories(mypkg PUBLIC ${RUST_LIB_DIR})
 target_link_libraries(mypkg PUBLIC ${RUST_LIB_NAME})
+#target_link_libraries(mypkg PRIVATE nlohmann_json::nlohmann_json)
 
 # set rpath so the lib is found at runtime
 if (UNIX)
