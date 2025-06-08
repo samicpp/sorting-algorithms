@@ -2,6 +2,11 @@
 /_tmp
 /demo/*
 
+# convinience
+/vscode.bat
+/powershell.bat
+/cmd.bat
+
 ### Node.js
 
 # Logs
