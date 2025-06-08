@@ -1,10 +1,10 @@
 use rand::seq::SliceRandom;
-use rand::rng;
+use rand_chacha::ChaCha8Rng;
+use rand::SeedableRng;
 
-
-pub fn shuffled_uint32(length: u32)->Vec<u32>{
-    let mut v:Vec<u32>=(0..length).collect();
-    let mut rng = rng();
+pub fn shuffled_uint32(length: u32) -> Vec<u32> {
+    let mut v: Vec<u32> = (0..length).collect();
+    let mut rng = ChaCha8Rng::seed_from_u64(42);
     v.shuffle(&mut rng);
     v
 }
