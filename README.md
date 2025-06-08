@@ -6,7 +6,7 @@ sorting algorithms in multiple languages
 1. [x] JavaScript (Deno): initial setup
 2. [x] Rust: modularity & performance
 3. [x] C/C++: modularity & comatibility with other projects
-4. [ ] Python: compatibility
+4. [x] Python: compatibility
 5. [ ] Java: compatibility
 6. [ ] C#: learning
 
@@ -20,5 +20,5 @@ sorting algorithms in multiple languages
 6. [x] heap sort
 7. [x] radix sort
 8. [x] heap sort
-9. [ ] insertion sort
+9. ~~[ ] insertion sort~~
 

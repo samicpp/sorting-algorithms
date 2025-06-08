@@ -14,3 +14,7 @@ read method
 ./build/cxx/mypkg ./demo/best-$num.json ./demo/best-sorted-$num.json $method
 ./build/cxx/mypkg ./demo/worst-$num.json ./demo/worst-sorted-$num.json $method
 
+python ./python/check.py ./demo/shuffled-$num.json
+python ./python/check.py ./demo/random-$num.json
+python ./python/check.py ./demo/best-$num.json
+python ./python/check.py ./demo/worst-$num.json

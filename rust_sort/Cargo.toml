@@ -8,5 +8,6 @@ rand = "*"
 num-traits = "*"
 
 [lib]
+name = "sorting_algorithm"
 crate-type = ["cdylib"]
 # test comment

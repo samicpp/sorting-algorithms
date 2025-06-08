@@ -6,8 +6,15 @@ set(CMAKE_CXX_STANDARD 17)
 # paths
 set(RUST_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 set(RUST_LIB_DIR "${RUST_PROJECT_DIR}/target/release")
-set(RUST_LIB_NAME sorting_algorithm) # From your Cargo.toml
-set(RUST_LIB_PATH "${RUST_LIB_DIR}/lib${RUST_LIB_NAME}.so")
+set(RUST_LIB_NAME sorting_algorithm)
+
+if(WIN32)
+    set(RUST_LIB_PATH "${RUST_LIB_DIR}/${RUST_LIB_NAME}.dll")
+elseif(APPLE)
+    set(RUST_LIB_PATH "${RUST_LIB_DIR}/lib${RUST_LIB_NAME}.dylib")
+else()
+    set(RUST_LIB_PATH "${RUST_LIB_DIR}/lib${RUST_LIB_NAME}.so")
+endif()
 
 # json
 #include(FetchContent)
@@ -34,8 +41,21 @@ add_dependencies(mypkg rustlib)
 
 # link
 target_link_directories(mypkg PUBLIC ${RUST_LIB_DIR})
-target_link_libraries(mypkg PUBLIC ${RUST_LIB_NAME})
 #target_link_libraries(mypkg PRIVATE nlohmann_json::nlohmann_json)
+if(WIN32)
+    target_link_libraries(mypkg PUBLIC "${RUST_LIB_NAME}.dll.lib")
+else()
+    target_link_libraries(mypkg PUBLIC ${RUST_LIB_NAME})
+endif()
+
+# fix dll
+if (WIN32)
+    add_custom_command(TARGET mypkg POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${RUST_LIB_PATH}"
+        $<TARGET_FILE_DIR:mypkg>
+    )
+endif()
 
 # set rpath so the lib is found at runtime
 if (UNIX)
