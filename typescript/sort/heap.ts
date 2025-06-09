@@ -62,12 +62,13 @@ export const heapSortDebug = new class HeapSortDebug {
         const narr = this.workArr = [...arr];
 
         for (let i = Math.floor(arr.length / 2) - 1; i >= 0; i--) {
-            this.#nHeapify(arr.length, i);
+            await this.#nHeapify(arr.length, i);
         }
         for (let i = arr.length - 1; i > 0; i--) {
             [narr[0], narr[i]] = [narr[i], narr[0]];
-            this.next();
-            this.#nHeapify(i, 0);
+            //await this.next();
+            await this.#nHeapify(i, 0);
+            await this.checked();
         }
 
         return narr;
