@@ -45,6 +45,8 @@ export const mergeSortDebug = new class MergeSortDebug {
 
         while (i < left.length && j < right.length) {
             await this.checked();
+            await this.get(start+i);
+            await this.get(mid+j);
             if (left[i] <= right[j]) {
                 await this.set(k++, left[i++]);
             } else {
