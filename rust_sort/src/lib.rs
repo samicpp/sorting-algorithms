@@ -1,6 +1,7 @@
 pub mod sort;
 pub mod tools;
-pub mod ffi;
+// pub mod ffi;
+pub mod wasm;
 
 use std::time::{Duration, Instant};
 use std::thread::{self, sleep};
