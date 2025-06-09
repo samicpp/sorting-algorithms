@@ -54,8 +54,8 @@ export const heapSortDebug = new class HeapSortDebug {
             await this.set(i, await this.get(max));
             await this.set(max, t);
             //[arr[i], arr[max]] = [arr[max], arr[i]];
-            this.next();
-            this.#nHeapify(n, max);
+            await this.next();
+            await this.#nHeapify(n, max);
         }
     }
     async number(arr: number[]): Promise<number[]> {

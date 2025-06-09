@@ -77,7 +77,7 @@ export const radixSortDebug = new class RadixSortDebug {
 
         for (let exp = 1; Math.floor(largest / exp) > 0; exp *= 10) {
             sorted.length = 0;
-            this.#nSort(sorted, exp);
+            await this.#nSort(sorted, exp);
             await this.checked();
             [sorted, this.workArr] = [this.workArr, sorted];
             await this.next();
