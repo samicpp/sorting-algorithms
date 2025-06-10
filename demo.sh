@@ -1,7 +1,7 @@
 echo how many numbers must the array contain
 read num
 
-echo what sorting method do you wanna use [bogo, bubble, heap, merge, quick, radix, stalin]
+echo what sorting method do you wanna use [bogo, bubble, heap, merge, quick, radix, count, stalin]
 read method
 
 ./python/generate.py ./demo/shuffled-$num.json $num shuffled

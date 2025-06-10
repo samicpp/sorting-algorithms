@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 echo how many numbers must the array contain
 set /p num=
 
-echo what sorting method do you wanna use [bogo, bubble, heap, merge, quick, radix, stalin]
+echo what sorting method do you wanna use [bogo, bubble, heap, merge, quick, radix, count, stalin]
 set /p method=
 
 python ./python/generate.py ./demo/shuffled-%num%.json %num% shuffled
