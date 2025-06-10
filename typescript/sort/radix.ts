@@ -52,9 +52,10 @@ export const radixSortDebug = new class RadixSortDebug {
     async next() { return new Promise(r => setTimeout(r)) };
     async checked() { return new Promise(r => setTimeout(r)) };
     async get(i: number) { return this.workArr[i] }
-    async set(i: number, val: number) { return this.workArr[i] = val }
+    async set(i: number|string, val: number) { return this.workArr[i] = val }
 
-    async#nSort(arr: number[], exp = 1) {
+    async#nSort(_arr: number[], exp = 1) {
+        const arr: number[]=[];
         const count: number[] = Array(10).fill(0);
         for (let i = 0; i < this.workArr.length; i++) {
             let item=await this.get(i);
@@ -69,10 +70,14 @@ export const radixSortDebug = new class RadixSortDebug {
             arr[si] = await this.get(i);
             await this.next();
         };
+        for(let i in arr){
+            await this.set(i,arr[i]);
+            await this.next();
+        };
     }
 
     async number(arr: number[]): Promise<number[]> {
-        let sorted: number[] = [];
+        let sorted: number[] = [...arr];
         this.workArr = [...arr];
 
         let largest = 0;
@@ -82,7 +87,7 @@ export const radixSortDebug = new class RadixSortDebug {
             sorted.length = 0;
             await this.#nSort(sorted, exp);
             await this.checked();
-            [sorted, this.workArr] = [this.workArr, sorted];
+            //[sorted, this.workArr] = [this.workArr, sorted];
             await this.next();
         };
 
