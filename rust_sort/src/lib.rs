@@ -163,6 +163,18 @@ mod tests {
     }
 
     #[test]
+    fn test_count_sort(){
+        let svec=tools::shuffled_uint32(100_000);
+        let now=Instant::now();
+        let out=sort::count::number(svec);
+        let del=now.elapsed().as_nanos() as f64;
+
+        println!("\x1b[36m count sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);
+        // println!("{:?}",&out[0..20]);
+        assert!(tools::is_sorted(&out),"\x1b[31m count sort failed\x1b[0m {:?}",&out[0..20]);
+    }
+
+    #[test]
     #[ignore]
     fn test_nosort(){
         let svec=tools::shuffled_uint32(1_000);

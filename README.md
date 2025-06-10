@@ -8,7 +8,7 @@ sorting algorithms in multiple languages
 3. [x] C/C++: modularity & comatibility with other projects
 4. [x] Python: compatibility
 5. [ ] Java: compatibility
-6. [ ] C#: learning
+6. ~~[ ] C#: learning~~
 
 
 ## algorithms timeline
@@ -21,4 +21,5 @@ sorting algorithms in multiple languages
 7. [x] radix sort
 8. [x] heap sort
 9. ~~[ ] insertion sort~~
+10. [x] count sort
 

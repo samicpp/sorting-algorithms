@@ -10,6 +10,7 @@ pub extern "C" fn quick_sort(ptr: *mut i32, len: usize){
     slice.copy_from_slice(&sorted);
 }
 
+
 #[unsafe(no_mangle)]
 pub extern "C" fn radix_sort(ptr: *mut i32, len: usize){
     let slice = unsafe{
@@ -17,6 +18,16 @@ pub extern "C" fn radix_sort(ptr: *mut i32, len: usize){
         std::slice::from_raw_parts_mut(ptr, len)
     };
     let sorted=sort::radix::number(slice.to_vec());
+    slice.copy_from_slice(&sorted);
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn count_sort(ptr: *mut i32, len: usize){
+    let slice = unsafe{
+        assert!(!ptr.is_null(),"pointer is null");
+        std::slice::from_raw_parts_mut(ptr, len)
+    };
+    let sorted=sort::count::number(slice.to_vec());
     slice.copy_from_slice(&sorted);
 }
 

@@ -7,6 +7,7 @@ export * from "./sort/heap.ts";
 export * from "./sort/bogo.ts";
 export * from "./sort/bubble.ts";
 export * from "./sort/stalin.ts";
+export * from "./sort/count.ts";
 export * as check from "./sort/check.ts";
 
 

@@ -26,6 +26,12 @@ pub fn wradix_sort(arr: Vec<i32>) -> Vec<i32> {
 }
 
 #[wasm_bindgen]
+pub fn wcount_sort(arr: Vec<i32>) -> Vec<i32> {
+    let arr = sort::count::number(arr);
+    arr
+}
+
+#[wasm_bindgen]
 pub fn wheap_sort(arr: Vec<i32>) -> Vec<i32> {
     let arr = sort::heap::number(arr);
     arr
