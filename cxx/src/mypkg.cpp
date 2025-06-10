@@ -74,7 +74,7 @@ int main(int argc, char* argv[]){
 
         json outj={
             {"type","int"},
-            {"arr",vec},
+            {"list",vec},
         };
 
         //write to file 
