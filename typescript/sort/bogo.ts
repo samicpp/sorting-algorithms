@@ -20,14 +20,20 @@ export const bogoSortDebug = new class BogoSortDebug {
     workArr: number[] = [];
     async next() { return new Promise(r => setTimeout(r)) };
     async checked() { return new Promise(r => setTimeout(r)) };
-    async get(name: number) { return this.workArr[name] }
-    async set(name: number, value: number) { return this.workArr[name] = value }
+    async get(name: number|string) { return this.workArr[name] }
+    async set(name: number|string, value: number) { return this.workArr[name] = value }
 
     async number(arr: number[]): Promise<number[]> {
         this.workArr = [...arr];
         while (true) {
-            this.workArr = shuffle(arr);
-            await this.next();
+            //this.workArr = shuffle(arr);
+            for(const i in this.workArr){
+                const r=Math.floor(Math.random()*this.workArr.length);
+                const v=await this.get(i);
+                await this.set(i,await this.get(r));
+                await this.set(r,v);
+                await this.next();
+            };
             await this.checked();
             if (check.number(this.workArr)) {
                 break;
