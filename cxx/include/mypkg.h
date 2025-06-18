@@ -7,7 +7,7 @@ extern "C" {
 #endif
 
 void quick_sort(int* ptr, size_t len);
-void radix_sort(int* ptr, size_t len);
+void radix_sort(int* ptr, size_t len, int base);
 void count_sort(int* ptr, size_t len);
 void heap_sort(int* ptr, size_t len);
 void merge_sort(int* ptr, size_t len);

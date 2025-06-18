@@ -20,8 +20,8 @@ pub fn wbubble_sort(arr: Vec<i32>) -> Vec<i32> {
 }
 
 #[wasm_bindgen]
-pub fn wradix_sort(arr: Vec<i32>) -> Vec<i32> {
-    let arr = sort::radix::number(arr);
+pub fn wradix_sort(arr: Vec<i32>, base: i32) -> Vec<i32> {
+    let arr = sort::radix::number(arr,base);
     arr
 }
 

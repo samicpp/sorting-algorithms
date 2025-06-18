@@ -144,7 +144,7 @@ mod tests {
     fn test_radix_sort(){
         let svec=tools::shuffled_uint32(100_000);
         let now=Instant::now();
-        let out=sort::radix::number(svec);
+        let out=sort::radix::number(svec,10);
         let del=now.elapsed().as_nanos() as f64;
 
         println!("\x1b[36m radix sort took {}µs = {}s\x1b[0m",del/1000.0,del/1_000_000_000.0);

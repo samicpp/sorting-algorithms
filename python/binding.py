@@ -11,9 +11,12 @@ for i in ["quick_sort","radix_sort","heap_sort","merge_sort","bubble_sort","bogo
     func.restype=None
     pass
 
-def __run_sort(name:str,data:List[int]):
+sortlib.radix_sort.argtypes=[ctypes.POINTER(ctypes.c_int),ctypes.c_size_t,ctypes.c_int]
+
+def __run_sort(name:str,data:List[int],base:int):
     arr=(ctypes.c_int*len(data))(*data)
-    getattr(sortlib,name)(arr,len(data))
+    if name=="radix_sort":getattr(sortlib,name)(arr,len(data),base)
+    else:getattr(sortlib,name)(arr,len(data))
     return list(arr)
 
 # individual
@@ -26,7 +29,7 @@ def merge(data:List[int]):
 def heap(data:List[int]):
     return __run_sort("heap_sort",data)
 
-def radix(data:List[int]):
+def radix(data:List[int],base:int=10):
     return __run_sort("radix_sort",data)
 
 def bogo(data:List[int]):

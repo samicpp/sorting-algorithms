@@ -65,7 +65,7 @@ int main(int argc, char* argv[]){
         if(method=="quick")quick_sort(vec.data(),vec.size());
         else if(method=="merge")merge_sort(vec.data(),vec.size());
         else if(method=="bubble")bubble_sort(vec.data(),vec.size());
-        else if(method=="radix")radix_sort(vec.data(),vec.size());
+        else if(method=="radix")radix_sort(vec.data(),vec.size(),10);
         else if(method=="count")count_sort(vec.data(),vec.size());
         else if(method=="heap")heap_sort(vec.data(),vec.size());
         else if(method=="stalin")stalin_sort(vec.data(),vec.size());
